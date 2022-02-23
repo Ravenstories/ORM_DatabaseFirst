@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Travel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Airport">
+          <Key>
+            <PropertyRef Name="airportId" />
+          </Key>
+          <Property Name="airportId" Type="int" Nullable="false" />
+          <Property Name="IATA" Type="varchar" MaxLength="10" />
+          <Property Name="country" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="companyId" />
+          </Key>
+          <Property Name="companyId" Type="int" Nullable="false" />
+          <Property Name="companyName" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="TravelRoute">
+          <Key>
+            <PropertyRef Name="travelRouteId" />
+          </Key>
+          <Property Name="travelRouteId" Type="int" Nullable="false" />
+          <Property Name="ownerCompanyId" Type="int" />
+          <Property Name="fromId" Type="int" />
+          <Property Name="toId" Type="int" />
+          <Property Name="travelDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_fromId">
+          <End Role="Airport" Type="Self.Airport" Multiplicity="0..1" />
+          <End Role="TravelRoute" Type="Self.TravelRoute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Airport">
+              <PropertyRef Name="airportId" />
+            </Principal>
+            <Dependent Role="TravelRoute">
+              <PropertyRef Name="fromId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ownerCompany">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="TravelRoute" Type="Self.TravelRoute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="companyId" />
+            </Principal>
+            <Dependent Role="TravelRoute">
+              <PropertyRef Name="ownerCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_toId">
+          <End Role="Airport" Type="Self.Airport" Multiplicity="0..1" />
+          <End Role="TravelRoute" Type="Self.TravelRoute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Airport">
+              <PropertyRef Name="airportId" />
+            </Principal>
+            <Dependent Role="TravelRoute">
+              <PropertyRef Name="toId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TravelStoreContainer">
+          <EntitySet Name="Airport" EntityType="Self.Airport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TravelRoute" EntityType="Self.TravelRoute" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_fromId" Association="Self.FK_fromId">
+            <End Role="Airport" EntitySet="Airport" />
+            <End Role="TravelRoute" EntitySet="TravelRoute" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ownerCompany" Association="Self.FK_ownerCompany">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="TravelRoute" EntitySet="TravelRoute" />
+          </AssociationSet>
+          <AssociationSet Name="FK_toId" Association="Self.FK_toId">
+            <End Role="Airport" EntitySet="Airport" />
+            <End Role="TravelRoute" EntitySet="TravelRoute" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Travel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Airport">
+          <Key>
+            <PropertyRef Name="airportId" />
+          </Key>
+          <Property Name="airportId" Type="Int32" Nullable="false" />
+          <Property Name="IATA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="country" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TravelRoutes" Relationship="Self.FK_fromId" FromRole="Airport" ToRole="TravelRoute" />
+          <NavigationProperty Name="TravelRoutes1" Relationship="Self.FK_toId" FromRole="Airport" ToRole="TravelRoute" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="companyId" />
+          </Key>
+          <Property Name="companyId" Type="Int32" Nullable="false" />
+          <Property Name="companyName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TravelRoutes" Relationship="Self.FK_ownerCompany" FromRole="Company" ToRole="TravelRoute" />
+        </EntityType>
+        <EntityType Name="TravelRoute">
+          <Key>
+            <PropertyRef Name="travelRouteId" />
+          </Key>
+          <Property Name="travelRouteId" Type="Int32" Nullable="false" />
+          <Property Name="ownerCompanyId" Type="Int32" />
+          <Property Name="fromId" Type="Int32" />
+          <Property Name="toId" Type="Int32" />
+          <Property Name="travelDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Airport" Relationship="Self.FK_fromId" FromRole="TravelRoute" ToRole="Airport" />
+          <NavigationProperty Name="Airport1" Relationship="Self.FK_toId" FromRole="TravelRoute" ToRole="Airport" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_ownerCompany" FromRole="TravelRoute" ToRole="Company" />
+        </EntityType>
+        <Association Name="FK_fromId">
+          <End Role="Airport" Type="Self.Airport" Multiplicity="0..1" />
+          <End Role="TravelRoute" Type="Self.TravelRoute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Airport">
+              <PropertyRef Name="airportId" />
+            </Principal>
+            <Dependent Role="TravelRoute">
+              <PropertyRef Name="fromId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_toId">
+          <End Role="Airport" Type="Self.Airport" Multiplicity="0..1" />
+          <End Role="TravelRoute" Type="Self.TravelRoute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Airport">
+              <PropertyRef Name="airportId" />
+            </Principal>
+            <Dependent Role="TravelRoute">
+              <PropertyRef Name="toId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ownerCompany">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="TravelRoute" Type="Self.TravelRoute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="companyId" />
+            </Principal>
+            <Dependent Role="TravelRoute">
+              <PropertyRef Name="ownerCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ORM_DatabaseFirstEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Airports" EntityType="Self.Airport" />
+          <EntitySet Name="Companies" EntityType="Self.Company" />
+          <EntitySet Name="TravelRoutes" EntityType="Self.TravelRoute" />
+          <AssociationSet Name="FK_fromId" Association="Self.FK_fromId">
+            <End Role="Airport" EntitySet="Airports" />
+            <End Role="TravelRoute" EntitySet="TravelRoutes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_toId" Association="Self.FK_toId">
+            <End Role="Airport" EntitySet="Airports" />
+            <End Role="TravelRoute" EntitySet="TravelRoutes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ownerCompany" Association="Self.FK_ownerCompany">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="TravelRoute" EntitySet="TravelRoutes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TravelStoreContainer" CdmEntityContainer="ORM_DatabaseFirstEntities">
+          <EntitySetMapping Name="Airports">
+            <EntityTypeMapping TypeName="Travel.Airport">
+              <MappingFragment StoreEntitySet="Airport">
+                <ScalarProperty Name="airportId" ColumnName="airportId" />
+                <ScalarProperty Name="IATA" ColumnName="IATA" />
+                <ScalarProperty Name="country" ColumnName="country" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="Travel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="companyId" ColumnName="companyId" />
+                <ScalarProperty Name="companyName" ColumnName="companyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TravelRoutes">
+            <EntityTypeMapping TypeName="Travel.TravelRoute">
+              <MappingFragment StoreEntitySet="TravelRoute">
+                <ScalarProperty Name="travelRouteId" ColumnName="travelRouteId" />
+                <ScalarProperty Name="ownerCompanyId" ColumnName="ownerCompanyId" />
+                <ScalarProperty Name="fromId" ColumnName="fromId" />
+                <ScalarProperty Name="toId" ColumnName="toId" />
+                <ScalarProperty Name="travelDate" ColumnName="travelDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
