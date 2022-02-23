@@ -16,7 +16,7 @@ namespace ORM_DatabaseFirst
     public partial class ORM_DatabaseFirstEntities : DbContext
     {
         public ORM_DatabaseFirstEntities()
-            : base("name=ORM_DatabaseFirstEntities")
+            : base("name=ORM_DatabaseFirstEntities1")
         {
         }
     
@@ -25,8 +25,8 @@ namespace ORM_DatabaseFirst
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Airport> Airports { get; set; }
-        public virtual DbSet<Company> Companies { get; set; }
-        public virtual DbSet<TravelRoute> TravelRoutes { get; set; }
+        public virtual DbSet<Airport> Airport { get; set; }
+        public virtual DbSet<Company> Company { get; set; }
+        public virtual DbSet<TravelRoute> TravelRoute { get; set; }
     }
 }

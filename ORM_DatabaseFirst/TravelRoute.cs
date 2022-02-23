@@ -16,12 +16,10 @@ namespace ORM_DatabaseFirst
     {
         public int travelRouteId { get; set; }
         public Nullable<int> ownerCompanyId { get; set; }
-        public Nullable<int> fromId { get; set; }
-        public Nullable<int> toId { get; set; }
+        public string fromId { get; set; }
+        public string toId { get; set; }
         public Nullable<System.DateTime> travelDate { get; set; }
     
-        public virtual Airport Airport { get; set; }
-        public virtual Airport Airport1 { get; set; }
         public virtual Company Company { get; set; }
     }
 }

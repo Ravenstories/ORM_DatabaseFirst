@@ -17,13 +17,13 @@ namespace ORM_DatabaseFirst
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Company()
         {
-            this.TravelRoutes = new HashSet<TravelRoute>();
+            this.TravelRoute = new HashSet<TravelRoute>();
         }
     
         public int companyId { get; set; }
         public string companyName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TravelRoute> TravelRoutes { get; set; }
+        public virtual ICollection<TravelRoute> TravelRoute { get; set; }
     }
 }

@@ -13,10 +13,12 @@ namespace ORM_DatabaseFirst
             List<TravelRoute> travelRoute;
             using (var ctx = new ORM_DatabaseFirstEntities())
             {
-                travelRoute = ctx.TravelRoutes.ToList<TravelRoute>();
+                //Get routes and store add to our list. 
+                travelRoute = ctx.TravelRoute.ToList<TravelRoute>();
                 foreach (TravelRoute a in travelRoute)
                 {
-                    Console.WriteLine("(" + a.Airport.IATA + ") " + a.Airport.country);
+                    // Shows all the travel routes. 
+                    Console.WriteLine("(" + a.fromId + ") To " + "(" + a.toId +")");
                     
                 }
             }

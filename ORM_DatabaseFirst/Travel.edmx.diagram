@@ -4,13 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="60046ffafef448dfb9a0811274bfaee2" Name="Diagram1">
-        <EntityTypeShape EntityType="Travel.Airport" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Travel.Company" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Travel.TravelRoute" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="Travel.FK_fromId" ManuallyRouted="false" />
-        <AssociationConnector Association="Travel.FK_toId" ManuallyRouted="false" />
-        <AssociationConnector Association="Travel.FK_ownerCompany" ManuallyRouted="false" />
+      <Diagram DiagramId="cc40b66370ab49889711fc305864b373" Name="Diagram1">
+        <EntityTypeShape EntityType="ORM_DatabaseFirst_Travel.Airport" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ORM_DatabaseFirst_Travel.Company" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ORM_DatabaseFirst_Travel.TravelRoute" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="ORM_DatabaseFirst_Travel.FK_ownerCompany" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

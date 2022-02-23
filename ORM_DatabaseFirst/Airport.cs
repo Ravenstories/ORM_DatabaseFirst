@@ -14,20 +14,9 @@ namespace ORM_DatabaseFirst
     
     public partial class Airport
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Airport()
-        {
-            this.TravelRoutes = new HashSet<TravelRoute>();
-            this.TravelRoutes1 = new HashSet<TravelRoute>();
-        }
-    
         public int airportId { get; set; }
+        public string airportName { get; set; }
         public string IATA { get; set; }
         public string country { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TravelRoute> TravelRoutes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TravelRoute> TravelRoutes1 { get; set; }
     }
 }
