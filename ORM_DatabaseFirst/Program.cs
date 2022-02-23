@@ -18,7 +18,8 @@ namespace ORM_DatabaseFirst
                 foreach (TravelRoute a in travelRoute)
                 {
                     // Shows all the travel routes. 
-                    Console.WriteLine("(" + a.fromId + ") To " + "(" + a.toId +")");
+                    Console.WriteLine("Route Owner: " + a.Company.companyName);
+                    Console.WriteLine("Route: (" + a.fromId + ") To " + "(" + a.toId +") \n");
                     
                 }
             }

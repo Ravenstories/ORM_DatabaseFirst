@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Jaco9515\Source\Repos\Ravenstories\ORM_DatabaseFirst\ORM_DatabaseFirst\Travel.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\Jacobs verdens inderste\Program Projects\Ravenstories\ORM_DatabaseFirst\ORM_DatabaseFirst\Travel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

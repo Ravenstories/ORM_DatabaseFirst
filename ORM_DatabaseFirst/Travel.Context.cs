@@ -13,9 +13,9 @@ namespace ORM_DatabaseFirst
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ORM_DatabaseFirstEntities : DbContext
+    public partial class ORM_DatabaseFirstEntities1 : DbContext
     {
-        public ORM_DatabaseFirstEntities()
+        public ORM_DatabaseFirstEntities1()
             : base("name=ORM_DatabaseFirstEntities1")
         {
         }

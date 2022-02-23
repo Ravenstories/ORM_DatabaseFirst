@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="cc40b66370ab49889711fc305864b373" Name="Diagram1">
-        <EntityTypeShape EntityType="ORM_DatabaseFirst_Travel.Airport" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ORM_DatabaseFirst_Travel.Airport" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ORM_DatabaseFirst_Travel.Company" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ORM_DatabaseFirst_Travel.TravelRoute" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="ORM_DatabaseFirst_Travel.FK_ownerCompany" ManuallyRouted="false" />
